@@ -1,0 +1,167 @@
+# Bloco de Notas Integrado
+
+## Descrição
+
+O **Bloco de Notas Integrado** é uma extensão do Google Chrome que permite ao usuário criar, editar, excluir, e organizar notas diretamente no navegador. Com uma interface intuitiva e amigável, esta extensão é ideal para estudantes e profissionais que precisam tomar notas rápidas enquanto navegam.
+
+## Funcionalidades
+
+- **Criar e editar notas**: O usuário pode criar novas notas e editar notas já existentes.
+- **Excluir notas**: O usuário pode remover notas que não são mais necessárias.
+- **Organizar notas**: As notas podem ser organizadas em categorias.
+- **Sincronização (opcional)**: Sincronize as notas com o Google Drive para acessá-las em qualquer dispositivo.
+- **Interface simples e intuitiva**: Design amigável para uma experiência de uso eficiente.
+
+## Estrutura de Diretórios
+
+```plaintext
+meu_projeto_extensao/
+├── src/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   ├── popup.js
+│   │   └── content.js
+│   ├── icons/
+│   │   ├── icon16.png
+│   │   ├── icon48.png
+│   │   └── icon128.png
+│   └── popup.html
+├── manifest.json
+└── README.md
+
+
+##
+Aqui está o conteúdo do README.md no formato adequado para ser inserido no repositório do GitHub:
+
+markdown
+Copiar código
+# Bloco de Notas Integrado
+
+## Descrição
+
+O **Bloco de Notas Integrado** é uma extensão do Google Chrome que permite ao usuário criar, editar, excluir, e organizar notas diretamente no navegador. Com uma interface intuitiva e amigável, esta extensão é ideal para estudantes e profissionais que precisam tomar notas rápidas enquanto navegam.
+
+## Funcionalidades
+
+- **Criar e editar notas**: O usuário pode criar novas notas e editar notas já existentes.
+- **Excluir notas**: O usuário pode remover notas que não são mais necessárias.
+- **Organizar notas**: As notas podem ser organizadas em categorias.
+- **Sincronização (opcional)**: Sincronize as notas com o Google Drive para acessá-las em qualquer dispositivo.
+- **Interface simples e intuitiva**: Design amigável para uma experiência de uso eficiente.
+
+## Estrutura de Diretórios
+
+```plaintext
+meu_projeto_extensao/
+├── src/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   ├── popup.js
+│   │   └── content.js
+│   ├── icons/
+│   │   ├── icon16.png
+│   │   ├── icon48.png
+│   │   └── icon128.png
+│   └── popup.html
+├── manifest.json
+└── README.md
+
+##Arquitetura do Sistema
+**A arquitetura do sistema é baseada em uma extensão de navegador utilizando as tecnologias HTML, CSS, e JavaScript, com suporte para armazenamento local via Chrome Storage API e,
+opcionalmente, sincronização com Google Drive.**
+
+##Componentes Principais:
+##Frontend (popup.html):
+**Interface gráfica para criação, edição e visualização de notas.
+Responsável pela interação direta com o usuário.**
+
+##Backend (popup.js):
+**Lida com a lógica de criação, salvamento e exclusão de notas.
+Utiliza a API chrome.storage.sync para armazenar dados localmente e, opcionalmente, sincronizar com o Google Drive.
+
+##Armazenamento:
+**O armazenamento das notas é feito no Chrome Storage. Caso a sincronização com o Google Drive seja ativada, os dados também são enviados para a conta do Google do usuário.**
+
+##APIs Utilizadas
+##Chrome Storage API:
+**Utilizada para armazenar as notas localmente no navegador.
+Exemplo de uso:**
+chrome.storage.sync.set({ 'nota': nota }, function() {
+  console.log('Nota salva!');
+});
+
+##Chrome Scripting API:
+**Utilizada para injetar scripts na página ativa do usuário.**
+
+##Google Drive API (opcional):
+**Utilizada para sincronizar notas com o Google Drive.
+Requer autenticação via OAuth 2.0.**
+
+##Diagramas UML
+##Diagrama de Casos de Uso
+
+graph TD
+    A[Usuário] -->|Criar Nota| B((Bloco de Notas))
+    A -->|Editar Nota| B
+    A -->|Excluir Nota| B
+    A -->|Organizar Notas| B
+    A -->|Sincronizar Notas| C[Google Drive]
+
+##Diagrama de Classes
+classDiagram
+    class Nota {
+        -String titulo
+        -String conteudo
+        -String categoria
+        -Date dataCriacao
+        +criar()
+        +editar()
+        +excluir()
+    }
+
+    class Categoria {
+        -String nome
+        -List~Nota~ listaNotas
+        +adicionarNota()
+        +removerNota()
+        +organizarNotas()
+    }
+
+    class Sincronizacao {
+        -Boolean statusSincronizacao
+        +sincronizarComGoogleDrive()
+    }
+
+    Nota --> Categoria : pertence a
+    Categoria "1" --> "0..*" Nota : contém
+    Sincronizacao --> Nota : sincroniza
+
+##Estrutura de Dados
+Nota: Representa uma nota criada pelo usuário.
+
+##Atributos:
+titulo: Título da nota (String)
+conteudo: Conteúdo da nota (String)
+categoria: Categoria à qual a nota pertence (String)
+dataCriacao: Data de criação da nota (Date)
+Categoria: Agrupa notas por tipo ou tema.
+
+##Atributos:
+nome: Nome da categoria (String)
+listaNotas: Lista de notas que pertencem à categoria (ListNota)
+Sincronizacao: Gerencia a sincronização das notas com o Google Drive.
+
+##Atributos:
+statusSincronizacao: Indica se a sincronização está ativa (Boolean)
+
+Testes
+##Testes Unitários
+Testes foram realizados para verificar as principais funcionalidades, como criação, edição, e exclusão de notas. O framework Jest foi utilizado para garantir que cada função
+individual da extensão funcione conforme o esperado.
+
+##Testes de Integração
+O teste de integração verificou o fluxo completo da extensão, garantindo que a interface gráfica, o armazenamento de dados e a sincronização funcionassem corretamente.
+##Testes de Usabilidade
+Testes de usabilidade foram conduzidos com usuários reais. O feedback mostrou que a extensão é fácil de usar, mas sugeriu melhorias, como a inclusão de um campo de pesquisa para notas.
