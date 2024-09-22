@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "Bloco de Notas Integrado",
+    "version": "1.0",
+    "description": "Uma extensão simples para tomar notas enquanto navega.",
+    "permissions": ["storage", "activeTab", "scripting"],
+    "action": {
+      "default_popup": "src/popup.html",
+      "default_icon": {
+        "16": "src/icons/icon16.png",
+        "48": "src/icons/icon48.png",
+        "128": "src/icons/icon128.png"
+      }
+    }
+  }
+  

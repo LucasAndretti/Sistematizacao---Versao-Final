@@ -1,0 +1,15 @@
+meu_projeto_extensao/
+├── src/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   ├── popup.js
+│   │   └── content.js
+│   ├── icons/
+│   │   ├── icon16.png
+│   │   ├── icon48.png
+│   │   └── icon128.png
+│   └── popup.html
+├── manifest.json
+└── README.md
+
